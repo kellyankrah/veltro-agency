@@ -8,33 +8,42 @@ export function About() {
       className="scroll-mt-24 bg-black px-6 py-28 md:px-10 md:py-36"
     >
       <div className="mx-auto max-w-[1280px]">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16">
           <Reveal>
-            <h2
-              id="about-heading"
-              className="text-[clamp(2rem,4.5vw,3.5rem)] font-extrabold leading-[1.05] tracking-tight text-white"
-            >
-              One idea can change everything.
-            </h2>
+            {/* ASSET PLACEHOLDER: /images/about-editorial.jpg — one large,
+                documentary-style photo (campus, students, or the org).
+                Drop the file in and swap this placeholder for an <img>. */}
+            <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#2A2A2A] bg-gradient-to-br from-[#1a1a1a] via-[#121212] to-black" />
           </Reveal>
 
-          <Reveal delay={0.15} className="flex flex-col gap-6">
-            <p className="text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
-              TEDxGramblingStateUniversity is an independently organized TEDx event
-              presented by the Grambling State University Student Government
-              Association, bringing together students, faculty, alumni, and community
-              leaders to share ideas that educate, challenge perspectives, and inspire
-              meaningful action.
-            </p>
-            <p className="text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
-              As part of the global TEDx community, our goal is simple: to create a
-              platform where powerful ideas meet passionate people.
-            </p>
-            <p className="text-[16px] leading-[1.7] text-white md:text-[18px]">
-              Because the next idea capable of changing someone's life may already
-              exist within our own community.
-            </p>
-          </Reveal>
+          <div>
+            <Reveal>
+              <h2
+                id="about-heading"
+                className="text-[clamp(2rem,4.5vw,3.5rem)] font-extrabold leading-[1.05] tracking-tight text-white"
+              >
+                One idea can change everything.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.15} className="mt-6 flex flex-col gap-6">
+              <p className="text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
+                TEDxGramblingStateUniversity is an independently organized TEDx event
+                presented by the Grambling State University Student Government
+                Association, bringing together students, faculty, alumni, and community
+                leaders to share ideas that educate, challenge perspectives, and inspire
+                meaningful action.
+              </p>
+              <p className="text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
+                As part of the global TEDx community, our goal is simple: to create a
+                platform where powerful ideas meet passionate people.
+              </p>
+              <p className="text-[16px] leading-[1.7] text-white md:text-[18px]">
+                Because the next idea capable of changing someone's life may already
+                exist within our own community.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

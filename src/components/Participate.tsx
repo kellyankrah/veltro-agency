@@ -1,35 +1,37 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Reveal } from './Reveal';
 
 interface Card {
   eyebrow: string;
   description: string;
   cta: string;
-  href: string;
+  to: string;
 }
 
 const CARDS: Card[] = [
   {
     eyebrow: 'Speaker',
-    description: "Have an idea worth spreading?",
+    description: 'Have an idea worth spreading?',
     cta: 'Apply',
-    href: '#',
+    to: '/speaker',
   },
   {
     eyebrow: 'Volunteer',
     description: 'Help create an unforgettable TEDx experience.',
     cta: 'Apply',
-    href: '#',
+    to: '/volunteer',
   },
   {
     eyebrow: 'Audience',
     description: 'Experience powerful ideas firsthand.',
     cta: 'Register',
-    href: '#',
+    to: '/audience',
   },
 ];
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const MotionLink = motion.create(Link);
 
 export function Participate() {
   return (
@@ -54,10 +56,11 @@ export function Participate() {
         <div className="mt-16 grid gap-6 md:grid-cols-3 md:gap-8">
           {CARDS.map((card, i) => (
             <Reveal key={card.eyebrow} delay={i * 0.1} y={28}>
-              <motion.div
+              <MotionLink
+                to={card.to}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className="flex h-full flex-col justify-between rounded-2xl bg-[#121212] p-8 md:p-10"
+                className="group flex h-full flex-col justify-between rounded-2xl bg-[#121212] p-8 md:p-10"
               >
                 <div>
                   <h3 className="text-2xl font-bold text-white md:text-[28px]">
@@ -68,19 +71,13 @@ export function Participate() {
                   </p>
                 </div>
 
-                <a
-                  href={card.href}
-                  className="group mt-10 inline-flex items-center gap-2 text-[15px] font-semibold text-white transition-colors duration-200 hover:text-[#EB0028]"
-                >
+                <span className="mt-10 inline-flex items-center gap-2 text-[15px] font-semibold text-white transition-colors duration-200 group-hover:text-[#EB0028]">
                   {card.cta}
-                  <span
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                    aria-hidden="true"
-                  >
+                  <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                     &rarr;
                   </span>
-                </a>
-              </motion.div>
+                </span>
+              </MotionLink>
             </Reveal>
           ))}
         </div>

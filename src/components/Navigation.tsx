@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import { useScrolled } from '../hooks/useScrolled';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Participate', href: '#participate' },
-  { label: 'Roadmap', href: '#roadmap' },
-  { label: 'TEDx Club', href: '#tedx-club' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Organizer', href: '#organizer' },
+  { label: 'About', href: '/#about' },
+  { label: 'Participate', href: '/#participate' },
+  { label: 'Roadmap', href: '/#roadmap' },
+  { label: 'TEDx Club', href: '/#tedx-club' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Organizer', href: '/#organizer' },
 ];
 
 export function Navigation() {
   const scrolled = useScrolled();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isLanding = pathname === '/';
 
   // Close the mobile menu whenever the viewport grows back to desktop size.
   useEffect(() => {
@@ -32,7 +35,10 @@ export function Navigation() {
     };
   }, [menuOpen]);
 
-  const solid = scrolled || menuOpen;
+  // On the application pages there's no red/black hero underneath to
+  // scroll past, so the nav stays solid always rather than starting
+  // transparent over white form content.
+  const solid = !isLanding || scrolled || menuOpen;
 
   return (
     <header
@@ -51,34 +57,34 @@ export function Navigation() {
         aria-label="Primary"
         className="mx-auto flex max-w-[1280px] items-center justify-between px-6 py-5 md:px-10"
       >
-        <a
-          href="#top"
+        <Link
+          to="/"
           className="text-[15px] font-bold tracking-tight text-white"
           aria-label="TEDxGramblingStateUniversity, back to top"
         >
           TEDx<span className="text-[#EB0028]">Grambling</span>StateUniversity
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 className="text-[13px] font-medium tracking-wide text-white/70 transition-colors duration-200 hover:text-white"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden md:block">
-          <a
-            href="#participate"
+          <Link
+            to="/#participate"
             className="inline-flex items-center justify-center rounded-full bg-[#EB0028] px-6 py-2.5 text-[13px] font-semibold text-white transition-transform duration-300 hover:scale-[1.04] hover:bg-[#EB0028]/90"
           >
             Apply
-          </a>
+          </Link>
         </div>
 
         <button
@@ -122,23 +128,23 @@ export function Navigation() {
             <ul className="flex flex-col gap-1 px-6 pb-8 pt-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     onClick={() => setMenuOpen(false)}
                     className="block py-3 text-lg font-medium text-white/80 hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-4">
-                <a
-                  href="#participate"
+                <Link
+                  to="/#participate"
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#EB0028] px-6 py-3 text-[15px] font-semibold text-white"
                 >
                   Apply
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

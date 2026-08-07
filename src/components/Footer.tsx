@@ -23,8 +23,17 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#2A2A2A] bg-black px-6 py-16 md:px-10">
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-8 text-center">
+    <footer className="relative overflow-hidden border-t border-[#2A2A2A] bg-black px-6 py-16 md:px-10">
+      {/* ASSET PLACEHOLDER: /images/footer-panorama.jpg — a wide campus shot
+          for atmosphere only. Drop the file in and swap this placeholder
+          for an <img>; the overlay below keeps it subtle either way. */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-[#121212] to-black opacity-40"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+
+      <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-8 text-center">
         <div>
           <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/50">
             Presented by

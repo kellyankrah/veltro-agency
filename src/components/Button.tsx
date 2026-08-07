@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
 type Variant = 'invert' | 'outline-invert' | 'brand' | 'outline-dark';
 
 interface ButtonProps {
   children: ReactNode;
+  /** Same-page anchor or external link — rendered as a plain <a>. */
   href?: string;
+  /** Client-side route — rendered as a React Router <Link> (no full page reload). */
+  to?: string;
   onClick?: () => void;
   variant?: Variant;
   className?: string;
@@ -26,6 +30,8 @@ const VARIANT_CLASSES: Record<Variant, string> = {
     'bg-transparent text-black border border-black/25 hover:border-black hover:bg-black/5',
 };
 
+const MotionLink = motion.create(Link);
+
 /**
  * Shared CTA button. Scales gently on hover/tap per the animation spec —
  * no bounce, no color introduced beyond the fixed palette.
@@ -33,6 +39,7 @@ const VARIANT_CLASSES: Record<Variant, string> = {
 export function Button({
   children,
   href,
+  to,
   onClick,
   variant = 'invert',
   className = '',
@@ -45,6 +52,14 @@ export function Button({
     whileTap: { scale: 0.98 },
     transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] as const },
   };
+
+  if (to) {
+    return (
+      <MotionLink to={to} className={classes} {...motionProps}>
+        {children}
+      </MotionLink>
+    );
+  }
 
   if (href) {
     return (

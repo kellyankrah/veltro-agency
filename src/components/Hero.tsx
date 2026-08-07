@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from './Button';
+import { HeroBackground } from './HeroBackground';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -10,23 +11,7 @@ export function Hero() {
       aria-label="Introduction"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#EB0028]"
     >
-      {/* ASSET PLACEHOLDER: hero-background.mp4 — drop the file into /public and
-          uncomment the <video> element below to replace the animated gradient. */}
-      {/*
-      <video
-        className="absolute inset-0 h-full w-full object-cover opacity-40"
-        src="/hero-background.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-      */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -left-32 -top-32 h-[32rem] w-[32rem] rounded-full bg-white/10 blur-[110px] animate-float-slow" />
-        <div className="absolute -bottom-40 -right-20 h-[36rem] w-[36rem] rounded-full bg-black/20 blur-[120px] animate-float-slower" />
-        <div className="absolute left-1/2 top-1/3 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-white/5 blur-[100px] animate-float-slow" />
-      </div>
+      <HeroBackground />
 
       <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col items-center px-6 pb-20 pt-32 text-center md:px-10">
         <motion.p
@@ -74,16 +59,16 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.42, ease: EASE }}
           className="mt-12 flex flex-wrap items-center justify-center gap-4"
         >
-          <Button href="#participate" variant="invert">
+          <Button to="/speaker" variant="invert">
             Become a Speaker
           </Button>
-          <Button href="#participate" variant="invert">
+          <Button to="/volunteer" variant="invert">
             Volunteer
           </Button>
-          <Button href="#participate" variant="invert">
+          <Button to="/audience" variant="invert">
             Join the Audience
           </Button>
-          <Button href="#about" variant="outline-invert">
+          <Button to="/#about" variant="outline-invert">
             Learn More
           </Button>
         </motion.div>

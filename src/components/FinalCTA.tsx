@@ -30,13 +30,13 @@ export function FinalCTA() {
         </Reveal>
 
         <Reveal delay={0.3} className="mt-12 flex flex-wrap items-center justify-center gap-4">
-          <Button href="#participate" variant="invert">
+          <Button to="/speaker" variant="invert">
             Become a Speaker
           </Button>
-          <Button href="#participate" variant="invert">
+          <Button to="/volunteer" variant="invert">
             Volunteer
           </Button>
-          <Button href="#participate" variant="invert">
+          <Button to="/audience" variant="invert">
             Join the Audience
           </Button>
         </Reveal>

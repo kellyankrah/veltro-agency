@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
+import { RoadmapDot } from './RoadmapDot';
 import { MILESTONES, getMilestoneStatuses, type MilestoneStatus } from '../data/roadmap';
-
-const DOT_CLASSES: Record<MilestoneStatus, string> = {
-  completed: 'bg-white border-black/30',
-  current: 'bg-[#EB0028] border-[#EB0028] shadow-[0_0_0_6px_rgba(235,0,40,0.15)]',
-  future: 'bg-[#B3B3B3] border-[#B3B3B3]',
-};
 
 const TITLE_CLASSES: Record<MilestoneStatus, string> = {
   completed: 'text-black',
@@ -69,10 +64,7 @@ export function Roadmap() {
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="relative z-10 flex w-full flex-col items-center px-2 text-center"
                 >
-                  <span
-                    className={`h-4 w-4 rounded-full border-2 ${DOT_CLASSES[status]}`}
-                    aria-hidden="true"
-                  />
+                  <RoadmapDot status={status} />
                   <span className="mt-6 text-[13px] font-medium uppercase tracking-wide text-black/40">
                     {milestone.dateLabel}
                   </span>
@@ -105,10 +97,7 @@ export function Roadmap() {
                 className="relative flex gap-5 pb-10 last:pb-0"
               >
                 <div className="flex flex-col items-center">
-                  <span
-                    className={`h-4 w-4 shrink-0 rounded-full border-2 ${DOT_CLASSES[status]}`}
-                    aria-hidden="true"
-                  />
+                  <RoadmapDot status={status} />
                   {!isLast && (
                     <span
                       className={`mt-1 w-[2px] flex-1 ${

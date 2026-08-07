@@ -1,30 +1,52 @@
+import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { WelcomeVideo } from './components/WelcomeVideo';
-import { About } from './components/About';
-import { Participate } from './components/Participate';
-import { Roadmap } from './components/Roadmap';
-import { TEDxClub } from './components/TEDxClub';
-import { FAQ } from './components/FAQ';
-import { Organizer } from './components/Organizer';
-import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { ScrollToHash } from './components/ScrollToHash';
+import { LandingPage } from './pages/LandingPage';
+
+// Route-level code splitting: most visitors only ever see the landing
+// page, so the four application forms (and their Supabase/upload code)
+// stay out of that initial bundle and load on demand when navigated to.
+const SpeakerApplicationPage = lazy(() =>
+  import('./pages/SpeakerApplicationPage').then((m) => ({ default: m.SpeakerApplicationPage })),
+);
+const VolunteerApplicationPage = lazy(() =>
+  import('./pages/VolunteerApplicationPage').then((m) => ({ default: m.VolunteerApplicationPage })),
+);
+const AudienceRegistrationPage = lazy(() =>
+  import('./pages/AudienceRegistrationPage').then((m) => ({ default: m.AudienceRegistrationPage })),
+);
+const ClubInterestPage = lazy(() =>
+  import('./pages/ClubInterestPage').then((m) => ({ default: m.ClubInterestPage })),
+);
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-white" aria-busy="true">
+      <span
+        className="h-6 w-6 animate-spin rounded-full border-2 border-black/15 border-t-[#EB0028]"
+        aria-hidden="true"
+      />
+      <span className="sr-only">Loading…</span>
+    </div>
+  );
+}
 
 function App() {
   return (
     <>
+      <ScrollToHash />
       <Navigation />
-      <main id="main-content">
-        <Hero />
-        <WelcomeVideo />
-        <About />
-        <Participate />
-        <Roadmap />
-        <TEDxClub />
-        <FAQ />
-        <Organizer />
-        <FinalCTA />
-      </main>
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/speaker" element={<SpeakerApplicationPage />} />
+          <Route path="/volunteer" element={<VolunteerApplicationPage />} />
+          <Route path="/audience" element={<AudienceRegistrationPage />} />
+          <Route path="/club" element={<ClubInterestPage />} />
+        </Routes>
+      </Suspense>
       <Footer />
     </>
   );
