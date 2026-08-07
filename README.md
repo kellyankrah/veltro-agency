@@ -41,6 +41,7 @@ isolated from anything else in that project).
 | `/volunteer` | Volunteer application |
 | `/audience` | Audience registration |
 | `/club` | TEDx Club interest |
+| `/speakers`, `/speakers/:slug` | Prepared for future use — see `src/pages/speakers/README.md` |
 
 Each application is its own page (not a modal), lazy-loaded on navigation
 so the landing page's initial bundle doesn't carry the form/upload code.
@@ -62,26 +63,54 @@ dropped in — no further code changes needed:
 | `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | Gradient placeholder panel |
 | `footer-panorama.jpg` | Footer | `public/images/` | Gradient placeholder (footer already has its overlay treatment built in) |
 
-Note on the hero video specifically: the file that was supplied during
-development turned out to be a screen-recorded social clip with burned-in
-captions and a watermark, not raw event footage, so it was intentionally
-**not** wired in — the hero currently always shows its gradient fallback.
-Drop a real `hero-background.mp4` (and optionally a `hero-poster.jpg`
-first-frame image) into `public/hero/` to activate it.
+Note on the hero video: two different files have been supplied during
+development, and both turned out to be screen recordings (burned-in
+captions/watermark the first time; a persistent video-player UI — pause,
+volume, more, expand icons — baked into every frame the second time), not
+raw event footage, so neither was wired in — the hero currently always
+shows its gradient fallback. Drop a real `hero-background.mp4` (and
+optionally a `hero-poster.jpg` first-frame image) into `public/hero/` to
+activate it; nothing else needs to change for it to take over.
+
+### Adding real photos
+
+`src/components/EditorialImage.tsx` is the one place the site's photo
+treatment lives (desaturation, contrast, rounded corners, shadow, and a
+scroll-triggered reveal — fade-up, a slow zoom, or a gentle parallax
+depending on where it's used). Every placeholder panel (About, TEDx Club,
+Participate cards, Footer, and the future Speaker profile page) is already
+wired to it — passing a real `src` is the only change needed; the
+placeholder disappears on its own. The Organizer headshot and Welcome
+Video are deliberately left as their own bespoke placeholders per the
+brief, since those assets aren't ready yet.
 
 ## Speakers section
 
 `src/data/speakers.ts` exports an empty `SPEAKERS` array, which renders an
-elegant "Coming Soon" state. Add entries there (`photo`, `name`,
-`talkTitle`, `bio`) once speakers are announced and the section switches to
-a card grid automatically — no component changes required.
+anticipation-building "stage is being prepared" state (spotlight, mic
+silhouette, stage-light beams — all CSS/SVG, no assets needed). Add
+entries there (`photo`, `name`, `talkTitle`, `bio`, and optionally
+`talkDescription` / `videoEmbedUrl` / `resources` for later) once speakers
+are announced, and the section switches to a card grid automatically — no
+component changes required. Each entry also automatically gets a profile
+page at `/speakers/:id` (see `src/pages/speakers/README.md` — that route
+is prepared architecture, not linked from navigation yet).
 
 ## Roadmap status
 
 The Roadmap section's milestone states (completed / current / upcoming) are
 computed from the visitor's current date against `src/data/roadmap.ts`, so
 the "Up next" milestone updates automatically as the event approaches — no
-manual edits required as dates pass.
+manual edits required as dates pass. Hovering (or tabbing to) a milestone
+shows a tooltip with its date and a short description, also sourced from
+that file.
+
+## First-visit loading screen
+
+A one-time black splash (wordmark + "Ideas Worth Spreading", ~1.7s) shows
+on a visitor's first load and never again within that browser tab session
+(gated on `sessionStorage`, see `src/components/LoadingScreen.tsx`).
+Skipped entirely for `prefers-reduced-motion`.
 
 ## Admin dashboard
 

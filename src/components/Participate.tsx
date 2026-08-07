@@ -7,25 +7,28 @@ interface Card {
   description: string;
   cta: string;
   to: string;
+  /** ASSET PLACEHOLDER — set once a role-specific photo exists; the card
+   *  switches from a flat dark panel to an image card automatically. */
+  image?: string;
 }
 
 const CARDS: Card[] = [
   {
     eyebrow: 'Speaker',
     description: 'Have an idea worth spreading?',
-    cta: 'Apply',
+    cta: 'Submit My Talk',
     to: '/speaker',
   },
   {
     eyebrow: 'Volunteer',
-    description: 'Help create an unforgettable TEDx experience.',
-    cta: 'Apply',
+    description: 'Be part of the team that brings it all to life.',
+    cta: 'Join the Team',
     to: '/volunteer',
   },
   {
     eyebrow: 'Audience',
     description: 'Experience powerful ideas firsthand.',
-    cta: 'Register',
+    cta: 'Reserve My Seat',
     to: '/audience',
   },
 ];
@@ -60,9 +63,27 @@ export function Participate() {
                 to={card.to}
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className="group flex h-full flex-col justify-between rounded-2xl bg-[#121212] p-8 md:p-10"
+                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-[#121212] p-8 md:p-10"
               >
-                <div>
+                {card.image && (
+                  <>
+                    <motion.img
+                      src={card.image}
+                      alt=""
+                      loading="lazy"
+                      aria-hidden="true"
+                      style={{ filter: 'saturate(0.88) contrast(1.06) brightness(0.85)' }}
+                      initial={{ scale: 1.05 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true, margin: '-10%' }}
+                      transition={{ duration: 1.6, delay: i * 0.1, ease: EASE }}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
+                  </>
+                )}
+
+                <div className="relative">
                   <h3 className="text-2xl font-bold text-white md:text-[28px]">
                     {card.eyebrow}
                   </h3>
@@ -71,7 +92,7 @@ export function Participate() {
                   </p>
                 </div>
 
-                <span className="mt-10 inline-flex items-center gap-2 text-[15px] font-semibold text-white transition-colors duration-200 group-hover:text-[#EB0028]">
+                <span className="relative mt-10 inline-flex items-center gap-2 text-[15px] font-semibold text-white transition-colors duration-200 group-hover:text-[#EB0028]">
                   {card.cta}
                   <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
                     &rarr;

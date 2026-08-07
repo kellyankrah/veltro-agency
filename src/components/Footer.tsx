@@ -1,3 +1,6 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+
 const SOCIALS = [
   {
     label: 'Instagram',
@@ -21,16 +24,37 @@ const SOCIALS = [
   },
 ];
 
+// ASSET PLACEHOLDER: /images/footer-panorama.jpg — a wide campus shot for
+// atmosphere only. Set this to the path once the file exists in /public
+// and the gradient-only fallback below is replaced automatically.
+const FOOTER_IMAGE_SRC: string | undefined = undefined;
+
 export function Footer() {
+  const ref = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end end'] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [16, -16]);
+
   return (
-    <footer className="relative overflow-hidden border-t border-[#2A2A2A] bg-black px-6 py-16 md:px-10">
-      {/* ASSET PLACEHOLDER: /images/footer-panorama.jpg — a wide campus shot
-          for atmosphere only. Drop the file in and swap this placeholder
-          for an <img>; the overlay below keeps it subtle either way. */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-[#121212] to-black opacity-40"
-        aria-hidden="true"
-      />
+    <footer ref={ref} className="relative overflow-hidden border-t border-[#2A2A2A] bg-black px-6 py-16 md:px-10">
+      {FOOTER_IMAGE_SRC ? (
+        <motion.img
+          src={FOOTER_IMAGE_SRC}
+          alt=""
+          loading="lazy"
+          aria-hidden="true"
+          style={{
+            filter: 'saturate(0.88) contrast(1.06) brightness(0.9)',
+            y: prefersReducedMotion ? 0 : parallaxY,
+          }}
+          className="absolute inset-0 h-[calc(100%+32px)] w-full scale-105 object-cover opacity-40"
+        />
+      ) : (
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#121212] to-black opacity-40"
+          aria-hidden="true"
+        />
+      )}
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
       <div className="relative mx-auto flex max-w-[1280px] flex-col items-center gap-8 text-center">

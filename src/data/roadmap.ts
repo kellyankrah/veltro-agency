@@ -1,9 +1,11 @@
-export type MilestoneStatus = 'completed' | 'current' | 'future';
+export type MilestoneStatus = 'completed' | 'current' | 'upcoming';
 
 export interface Milestone {
   id: string;
   dateLabel: string;
   title: string;
+  /** Shown in the roadmap tooltip. */
+  description: string;
   /** ISO date the milestone begins. */
   start: string;
   /** ISO date the milestone is considered resolved by. */
@@ -15,6 +17,7 @@ export const MILESTONES: Milestone[] = [
     id: 'applications-open',
     dateLabel: 'August 8',
     title: 'Applications Open',
+    description: 'Speaker, volunteer, and audience applications go live.',
     start: '2026-08-08',
     end: '2026-08-08',
   },
@@ -22,6 +25,7 @@ export const MILESTONES: Milestone[] = [
     id: 'applications-close',
     dateLabel: 'September 5',
     title: 'Applications Close',
+    description: 'Last day to submit a speaker or volunteer application.',
     start: '2026-09-05',
     end: '2026-09-05',
   },
@@ -29,6 +33,7 @@ export const MILESTONES: Milestone[] = [
     id: 'speaker-announcements',
     dateLabel: 'September 12',
     title: 'Speaker Announcements',
+    description: 'Our inaugural speaker lineup is revealed.',
     start: '2026-09-12',
     end: '2026-09-12',
   },
@@ -36,6 +41,7 @@ export const MILESTONES: Milestone[] = [
     id: 'speaker-coaching',
     dateLabel: 'September 15 – October 18',
     title: 'Speaker Coaching',
+    description: 'Selected speakers work with our team to shape their talks.',
     start: '2026-09-15',
     end: '2026-10-18',
   },
@@ -43,6 +49,7 @@ export const MILESTONES: Milestone[] = [
     id: 'final-rehearsal',
     dateLabel: 'October 20',
     title: 'Final Rehearsal',
+    description: 'Speakers run their talks on the actual stage.',
     start: '2026-10-20',
     end: '2026-10-20',
   },
@@ -50,6 +57,7 @@ export const MILESTONES: Milestone[] = [
     id: 'event-day',
     dateLabel: 'October 23',
     title: 'TEDxGramblingStateUniversity',
+    description: 'The inaugural event. Doors open.',
     start: '2026-10-23',
     end: '2026-10-23',
   },
@@ -76,6 +84,6 @@ export function getMilestoneStatuses(
       currentAssigned = true;
       return 'current';
     }
-    return 'future';
+    return 'upcoming';
   });
 }

@@ -1,5 +1,6 @@
 import { Reveal } from './Reveal';
 import { SpeakerCard } from './SpeakerCard';
+import { SpeakersComingSoon } from './SpeakersComingSoon';
 import { SPEAKERS } from '../data/speakers';
 
 export function Speakers() {
@@ -29,15 +30,7 @@ export function Speakers() {
             ))}
           </div>
         ) : (
-          <Reveal delay={0.1} className="mt-16 flex flex-col items-center rounded-2xl border border-black/10 bg-black/[0.02] px-6 py-20 text-center">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#EB0028]">
-              Coming Soon
-            </span>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-black/60 md:text-base">
-              Our inaugural speaker lineup is announced September 12. Applications are open now —
-              this could be you.
-            </p>
-          </Reveal>
+          <SpeakersComingSoon />
         )}
       </div>
     </section>

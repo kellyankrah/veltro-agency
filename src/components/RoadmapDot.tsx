@@ -4,7 +4,7 @@ import type { MilestoneStatus } from '../data/roadmap';
 const DOT_CLASSES: Record<MilestoneStatus, string> = {
   completed: 'bg-white border-black/30',
   current: 'bg-[#EB0028] border-[#EB0028]',
-  future: 'bg-[#B3B3B3] border-[#B3B3B3]',
+  upcoming: 'bg-[#B3B3B3] border-[#B3B3B3]',
 };
 
 /** The timeline marker for one milestone — the "current" one pulses gently to draw the eye. */

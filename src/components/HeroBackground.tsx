@@ -4,6 +4,11 @@ import { motion, useReducedMotion } from 'framer-motion';
 const VIDEO_SRC = '/hero/hero-background.mp4';
 const POSTER_SRC = '/hero/hero-poster.jpg';
 
+// Featherlight film grain — pure SVG noise, no image asset. Kept faint
+// enough that it reads as texture, not as a visible effect.
+const GRAIN_SVG =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+
 /**
  * ASSET PLACEHOLDER: hero-background.mp4 / hero-poster.jpg
  *
@@ -99,6 +104,21 @@ export function HeroBackground() {
           <div className="absolute left-1/2 top-1/3 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-white/5 blur-[100px] animate-float-slow" />
         </>
       )}
+
+      {/* Vignette — keeps the eye centered on the copy regardless of what's beneath. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.32) 100%)',
+        }}
+      />
+
+      {/* Film grain — barely-there texture so the hero reads as cinematic, not flat. */}
+      <div
+        className="absolute inset-0 opacity-[0.035] mix-blend-overlay"
+        style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
+      />
     </div>
   );
 }

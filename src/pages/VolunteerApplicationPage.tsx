@@ -99,8 +99,8 @@ export function VolunteerApplicationPage() {
         {isSuccess ? (
           <SuccessScreen
             key="success"
-            title="You're signed up."
-            message="Thank you for offering your time to TEDxGramblingStateUniversity. Our volunteer team will reach out by email with next steps as the event approaches."
+            title="You're on the team."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. Days like this run on people like you — our volunteer team will reach out by email with next steps as the event approaches."
           />
         ) : (
           <motion.form
@@ -154,7 +154,7 @@ export function VolunteerApplicationPage() {
               error={errors.whyVolunteer}
             />
 
-            <SubmitButton submitting={isSubmitting}>Submit Application</SubmitButton>
+            <SubmitButton submitting={isSubmitting}>Join the Team</SubmitButton>
           </motion.form>
         )}
       </AnimatePresence>

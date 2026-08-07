@@ -20,8 +20,8 @@ export function WelcomeVideo() {
             Welcome to TEDxGramblingStateUniversity
           </h2>
           <p className="mt-5 text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
-            Hear why we're bringing TEDx to Grambling and how you can become part of
-            our inaugural event.
+            Hear why TEDx is coming to Grambling — and why this inaugural event is
+            worth being part of.
           </p>
         </Reveal>
 

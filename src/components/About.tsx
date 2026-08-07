@@ -1,4 +1,5 @@
 import { Reveal } from './Reveal';
+import { EditorialImage } from './EditorialImage';
 
 export function About() {
   return (
@@ -9,12 +10,10 @@ export function About() {
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="grid items-center gap-12 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16">
-          <Reveal>
-            {/* ASSET PLACEHOLDER: /images/about-editorial.jpg — one large,
-                documentary-style photo (campus, students, or the org).
-                Drop the file in and swap this placeholder for an <img>. */}
-            <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#2A2A2A] bg-gradient-to-br from-[#1a1a1a] via-[#121212] to-black" />
-          </Reveal>
+          {/* ASSET PLACEHOLDER: /images/about-editorial.jpg — one large,
+              documentary-style photo (campus, students, or the org). Pass it
+              as `src` below and this placeholder panel disappears on its own. */}
+          <EditorialImage alt="" variant="fade-up" className="aspect-[4/5] w-full" />
 
           <div>
             <Reveal>
@@ -35,12 +34,12 @@ export function About() {
                 meaningful action.
               </p>
               <p className="text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
-                As part of the global TEDx community, our goal is simple: to create a
-                platform where powerful ideas meet passionate people.
+                As part of the global TEDx community, our mission is simple: build a
+                stage where powerful ideas meet the people ready to carry them forward.
               </p>
               <p className="text-[16px] leading-[1.7] text-white md:text-[18px]">
                 Because the next idea capable of changing someone's life may already
-                exist within our own community.
+                exist within our own community — it just hasn't found its stage yet.
               </p>
             </Reveal>
           </div>

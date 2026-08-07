@@ -86,8 +86,8 @@ export function AudienceRegistrationPage() {
         {isSuccess ? (
           <SuccessScreen
             key="success"
-            title="You're registered."
-            message="We've saved your seat for TEDxGramblingStateUniversity. Keep an eye on your inbox for event details as October 23 approaches."
+            title="Your seat is saved."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. We've reserved your place for October 23 — keep an eye on your inbox for details as the day gets closer."
           />
         ) : (
           <motion.form

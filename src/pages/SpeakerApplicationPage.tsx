@@ -141,8 +141,8 @@ export function SpeakerApplicationPage() {
         {isSuccess ? (
           <SuccessScreen
             key="success"
-            title="Your application is in."
-            message="Thank you for applying to speak at TEDxGramblingStateUniversity. We review every submission and will follow up by email — speaker announcements go out September 12."
+            title="Your idea is officially in the running."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. We read every submission with care and will follow up by email — speaker announcements go out September 12. However this goes, we're glad you raised your hand."
           />
         ) : (
           <motion.form
@@ -234,7 +234,7 @@ export function SpeakerApplicationPage() {
               error={errors.agreedToTerms}
             />
 
-            <SubmitButton submitting={isSubmitting}>Submit Application</SubmitButton>
+            <SubmitButton submitting={isSubmitting}>Submit My Talk</SubmitButton>
           </motion.form>
         )}
       </AnimatePresence>

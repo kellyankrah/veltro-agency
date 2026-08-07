@@ -83,7 +83,7 @@ export function ClubInterestPage() {
           <SuccessScreen
             key="success"
             title="You're on the list."
-            message="We'll be in touch as the TEDx Club comes to life — thank you for helping shape it."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. We'll be in touch as the Club comes to life — glad to have you helping shape it from the start."
           />
         ) : (
           <motion.form
@@ -115,7 +115,7 @@ export function ClubInterestPage() {
               onChange={(v) => set('clubIdeas', v)}
             />
 
-            <SubmitButton submitting={isSubmitting}>I'm Interested</SubmitButton>
+            <SubmitButton submitting={isSubmitting}>Count Me In</SubmitButton>
           </motion.form>
         )}
       </AnimatePresence>

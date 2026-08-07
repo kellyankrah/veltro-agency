@@ -29,7 +29,13 @@ export function FinalCTA() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.3} className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <Reveal delay={0.3}>
+          <p className="mx-auto mt-10 max-w-lg text-balance text-xl font-bold leading-snug text-white md:text-2xl">
+            The stage is waiting. Will your idea be the one that changes someone's life?
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.4} className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Button to="/speaker" variant="invert">
             Become a Speaker
           </Button>

@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion';
 import { Reveal } from './Reveal';
 import { RoadmapDot } from './RoadmapDot';
+import { RoadmapTooltip } from './RoadmapTooltip';
 import { MILESTONES, getMilestoneStatuses, type MilestoneStatus } from '../data/roadmap';
 
 const TITLE_CLASSES: Record<MilestoneStatus, string> = {
   completed: 'text-black',
   current: 'text-[#EB0028]',
-  future: 'text-[#B3B3B3]',
+  upcoming: 'text-[#B3B3B3]',
 };
 
 const LINE_CLASSES: Record<MilestoneStatus, string> = {
   completed: 'bg-black/25',
   current: 'bg-[#EB0028]',
-  future: 'bg-[#B3B3B3]/40',
+  upcoming: 'bg-[#B3B3B3]/40',
 };
 
 export function Roadmap() {
@@ -37,17 +38,20 @@ export function Roadmap() {
           >
             Roadmap
           </h2>
+          <p className="mx-auto mt-3 max-w-md text-[14px] text-black/40">
+            Hover or tab through a milestone for the details.
+          </p>
         </Reveal>
 
         {/* ASSET PLACEHOLDER: roadmap.svg could replace this CSS-drawn timeline. */}
-        <div className="mt-20 hidden md:block">
+        <div className="mt-28 hidden md:block">
           <div className="relative flex items-start justify-between">
             <div className="absolute left-0 right-0 top-[7px] flex h-[2px]">
               {MILESTONES.slice(0, -1).map((milestone, i) => (
                 <div
                   key={milestone.id}
                   className={`h-full flex-1 transition-colors duration-500 ${
-                    i < progressIndex ? LINE_CLASSES.completed : LINE_CLASSES.future
+                    i < progressIndex ? LINE_CLASSES.completed : LINE_CLASSES.upcoming
                   }`}
                 />
               ))}
@@ -64,13 +68,15 @@ export function Roadmap() {
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="relative z-10 flex w-full flex-col items-center px-2 text-center"
                 >
-                  <RoadmapDot status={status} />
-                  <span className="mt-6 text-[13px] font-medium uppercase tracking-wide text-black/40">
-                    {milestone.dateLabel}
-                  </span>
-                  <span className={`mt-2 text-[15px] font-bold leading-snug ${TITLE_CLASSES[status]}`}>
-                    {milestone.title}
-                  </span>
+                  <RoadmapTooltip milestone={milestone} placement="top">
+                    <RoadmapDot status={status} />
+                    <span className="mt-6 text-[13px] font-medium uppercase tracking-wide text-black/40">
+                      {milestone.dateLabel}
+                    </span>
+                    <span className={`mt-2 text-[15px] font-bold leading-snug ${TITLE_CLASSES[status]}`}>
+                      {milestone.title}
+                    </span>
+                  </RoadmapTooltip>
                   {status === 'current' && (
                     <span className="mt-3 rounded-full bg-[#EB0028]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#EB0028]">
                       Up next
@@ -101,25 +107,27 @@ export function Roadmap() {
                   {!isLast && (
                     <span
                       className={`mt-1 w-[2px] flex-1 ${
-                        i < progressIndex ? LINE_CLASSES.completed : LINE_CLASSES.future
+                        i < progressIndex ? LINE_CLASSES.completed : LINE_CLASSES.upcoming
                       }`}
                       aria-hidden="true"
                     />
                   )}
                 </div>
-                <div className="-mt-1">
-                  <span className="block text-[13px] font-medium uppercase tracking-wide text-black/40">
-                    {milestone.dateLabel}
-                  </span>
-                  <span className={`mt-1 block text-base font-bold leading-snug ${TITLE_CLASSES[status]}`}>
-                    {milestone.title}
-                  </span>
-                  {status === 'current' && (
-                    <span className="mt-2 inline-block rounded-full bg-[#EB0028]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#EB0028]">
-                      Up next
+                <RoadmapTooltip milestone={milestone} placement="bottom" align="start">
+                  <div className="-mt-1">
+                    <span className="block text-[13px] font-medium uppercase tracking-wide text-black/40">
+                      {milestone.dateLabel}
                     </span>
-                  )}
-                </div>
+                    <span className={`mt-1 block text-base font-bold leading-snug ${TITLE_CLASSES[status]}`}>
+                      {milestone.title}
+                    </span>
+                    {status === 'current' && (
+                      <span className="mt-2 inline-block rounded-full bg-[#EB0028]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#EB0028]">
+                        Up next
+                      </span>
+                    )}
+                  </div>
+                </RoadmapTooltip>
               </motion.li>
             );
           })}

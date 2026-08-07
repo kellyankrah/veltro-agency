@@ -12,7 +12,7 @@ export function Organizer() {
           <Reveal>
             {/* ASSET PLACEHOLDER: kelly-portrait.jpg — replace the monogram below
                 with an <img src="/kelly-portrait.jpg" alt="Kelly Nii Oti Ankrah" /> once available. */}
-            <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[#2A2A2A] bg-gradient-to-br from-[#1a1a1a] via-[#121212] to-black">
+            <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[#2A2A2A] bg-gradient-to-br from-[#1a1a1a] via-[#121212] to-black shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
               <div className="flex h-full w-full items-center justify-center">
                 <span className="text-[clamp(4rem,10vw,6rem)] font-extrabold tracking-tight text-white/15">
                   KA

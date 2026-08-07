@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { ScrollToHash } from './components/ScrollToHash';
+import { LoadingScreen } from './components/LoadingScreen';
 import { LandingPage } from './pages/LandingPage';
 
 // Route-level code splitting: most visitors only ever see the landing
@@ -20,6 +21,14 @@ const AudienceRegistrationPage = lazy(() =>
 const ClubInterestPage = lazy(() =>
   import('./pages/ClubInterestPage').then((m) => ({ default: m.ClubInterestPage })),
 );
+// Future-facing routes (see src/pages/speakers/README.md) — architecture
+// only for now, linked from nowhere yet.
+const SpeakersIndexPage = lazy(() =>
+  import('./pages/speakers/SpeakersIndexPage').then((m) => ({ default: m.SpeakersIndexPage })),
+);
+const SpeakerProfilePage = lazy(() =>
+  import('./pages/speakers/SpeakerProfilePage').then((m) => ({ default: m.SpeakerProfilePage })),
+);
 
 function RouteFallback() {
   return (
@@ -36,6 +45,7 @@ function RouteFallback() {
 function App() {
   return (
     <>
+      <LoadingScreen />
       <ScrollToHash />
       <Navigation />
       <Suspense fallback={<RouteFallback />}>
@@ -45,6 +55,8 @@ function App() {
           <Route path="/volunteer" element={<VolunteerApplicationPage />} />
           <Route path="/audience" element={<AudienceRegistrationPage />} />
           <Route path="/club" element={<ClubInterestPage />} />
+          <Route path="/speakers" element={<SpeakersIndexPage />} />
+          <Route path="/speakers/:slug" element={<SpeakerProfilePage />} />
         </Routes>
       </Suspense>
       <Footer />
