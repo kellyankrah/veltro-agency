@@ -10,10 +10,12 @@ export function About() {
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="grid items-center gap-12 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16">
-          {/* ASSET PLACEHOLDER: /images/about-editorial.jpg — one large,
-              documentary-style photo (campus, students, or the org). Pass it
-              as `src` below and this placeholder panel disappears on its own. */}
-          <EditorialImage alt="" variant="fade-up" className="aspect-[4/5] w-full" />
+          <EditorialImage
+            src="/images/about-editorial.jpg"
+            alt="The Grambling State University campus gate"
+            variant="fade-up"
+            className="aspect-[4/3] w-full"
+          />
 
           <div>
             <Reveal>

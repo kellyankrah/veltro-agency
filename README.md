@@ -53,36 +53,47 @@ Each is marked with an `ASSET PLACEHOLDER` comment at its usage site and
 falls back to an elegant, hand-built substitute until the real file is
 dropped in — no further code changes needed:
 
-| Asset | Section | Location | Fallback |
+| Asset | Section | Location | Status |
 | --- | --- | --- | --- |
-| `hero-background.mp4` + `hero-poster.jpg` | Hero | `public/hero/` | Animated floating gradients (desktop skips straight to the fallback if either file is missing; mobile only ever loads the poster image, never the video) |
-| `welcome-video.mp4` | Welcome Video | `public/` | Poster card with play button |
-| `roadmap.svg` | Roadmap | `public/` | CSS-drawn timeline built from data |
-| `kelly-portrait.jpg` | Meet the Organizer | `public/` | Monogram placeholder |
-| `about-editorial.jpg` | About | `public/images/` | Gradient placeholder panel |
-| `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | Gradient placeholder panel |
-| `footer-panorama.jpg` | Footer | `public/images/` | Gradient placeholder (footer already has its overlay treatment built in) |
+| `hero-background.mp4` + `hero-poster.jpg` | Hero | `public/hero/` | ✅ Live — real campus b-roll, re-encoded (audio stripped, faststart) |
+| `about-editorial.jpg` | About | `public/images/` | ✅ Live — campus gate |
+| `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | ✅ Live — SGA students |
+| `footer-panorama.jpg` | Footer | `public/images/` | ✅ Live — Student Success Center at dusk |
+| `welcome-video.mp4` | Welcome Video | `public/` | Still a placeholder — not recorded yet |
+| `kelly-portrait.jpg` | Meet the Organizer | `public/` | Still a placeholder — not supplied yet |
+| `roadmap.svg` | Roadmap | `public/` | Not needed — CSS-drawn timeline in use instead |
 
-Note on the hero video: two different files have been supplied during
-development, and both turned out to be screen recordings (burned-in
-captions/watermark the first time; a persistent video-player UI — pause,
-volume, more, expand icons — baked into every frame the second time), not
-raw event footage, so neither was wired in — the hero currently always
-shows its gradient fallback. Drop a real `hero-background.mp4` (and
-optionally a `hero-poster.jpg` first-frame image) into `public/hero/` to
-activate it; nothing else needs to change for it to take over.
+Two earlier hero video submissions were screen recordings (one with
+burned-in captions/watermark, one with a persistent video-player UI baked
+into every frame) and were correctly rejected. The current
+`hero-background.mp4` is clean b-roll — verified with `ffprobe`/`ffmpeg`
+(valid H.264 High profile, faststart, decodes end-to-end with zero errors)
+and by inspecting extracted frames directly; no UI chrome, no watermark.
+It could not be visually confirmed playing in *this dev sandbox* — the
+headless Chromium bundled with Playwright here has no H.264 decoder at all
+(a licensing omission in open-source Chromium builds, confirmed via
+`canPlayType`), so it correctly falls back to the gradient in that one
+browser. Real Chrome/Safari/Firefox all ship licensed H.264 decoders and
+will play it normally — verify in an actual browser after deploying.
+
+`public/images/grambling-tiger-logo.jpg` (the mascot illustration) was
+also supplied but isn't wired into any section — it's a graphic/logo, not
+documentary photography, so forcing the same photo treatment (desaturation
+etc.) onto it would look wrong. It's kept in the repo in case it's useful
+for branding elsewhere later.
 
 ### Adding real photos
 
 `src/components/EditorialImage.tsx` is the one place the site's photo
 treatment lives (desaturation, contrast, rounded corners, shadow, and a
 scroll-triggered reveal — fade-up, a slow zoom, or a gentle parallax
-depending on where it's used). Every placeholder panel (About, TEDx Club,
-Participate cards, Footer, and the future Speaker profile page) is already
-wired to it — passing a real `src` is the only change needed; the
-placeholder disappears on its own. The Organizer headshot and Welcome
-Video are deliberately left as their own bespoke placeholders per the
-brief, since those assets aren't ready yet.
+depending on where it's used). About, TEDx Club, and Footer are wired to
+real photos now; Participate cards and the future Speaker profile page are
+still on the placeholder path but wired the same way — passing a real
+`src` is the only change needed and the placeholder disappears on its own.
+The Organizer headshot and Welcome Video are deliberately left as their
+own bespoke placeholders per the brief, since those assets aren't ready
+yet.
 
 ## Speakers section
 

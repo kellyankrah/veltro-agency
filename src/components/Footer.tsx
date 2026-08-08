@@ -24,10 +24,7 @@ const SOCIALS = [
   },
 ];
 
-// ASSET PLACEHOLDER: /images/footer-panorama.jpg — a wide campus shot for
-// atmosphere only. Set this to the path once the file exists in /public
-// and the gradient-only fallback below is replaced automatically.
-const FOOTER_IMAGE_SRC: string | undefined = undefined;
+const FOOTER_IMAGE_SRC: string | undefined = '/images/footer-panorama.jpg';
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null);

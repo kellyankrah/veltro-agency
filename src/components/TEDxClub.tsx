@@ -32,10 +32,12 @@ export function TEDxClub() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            {/* ASSET PLACEHOLDER: /images/tedx-club-collaboration.jpg — a warm,
-                candid shot of students collaborating. Pass it as `src` below
-                and this placeholder panel disappears on its own. */}
-            <EditorialImage alt="" variant="fade-up" className="aspect-[4/3] w-full" />
+            <EditorialImage
+              src="/images/tedx-club-collaboration.jpg"
+              alt="Grambling State University Student Government Association members together"
+              variant="fade-up"
+              className="aspect-[4/3] w-full"
+            />
           </Reveal>
         </div>
       </div>
