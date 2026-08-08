@@ -1,4 +1,5 @@
 import { Reveal } from './Reveal';
+import { EditorialImage } from './EditorialImage';
 
 export function Organizer() {
   return (
@@ -10,15 +11,12 @@ export function Organizer() {
       <div className="mx-auto max-w-[1280px]">
         <div className="grid items-center gap-14 md:grid-cols-[minmax(0,380px)_1fr] md:gap-20">
           <Reveal>
-            {/* ASSET PLACEHOLDER: kelly-portrait.jpg - replace the monogram below
-                with an <img src="/kelly-portrait.jpg" alt="Kelly Ankrah" /> once available. */}
-            <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[#2A2A2A] bg-gradient-to-br from-[#1a1a1a] via-[#121212] to-black shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
-              <div className="flex h-full w-full items-center justify-center">
-                <span className="text-[clamp(4rem,10vw,6rem)] font-extrabold tracking-tight text-white/15">
-                  KA
-                </span>
-              </div>
-            </div>
+            <EditorialImage
+              src="/kelly-portrait.jpg"
+              alt="Kelly Ankrah"
+              variant="fade-up"
+              className="mx-auto aspect-[4/5] w-full max-w-sm"
+            />
           </Reveal>
 
           <Reveal delay={0.15}>

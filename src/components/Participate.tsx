@@ -8,7 +8,7 @@ interface Card {
   description: string;
   cta: string;
   to: string;
-  /** ASSET PLACEHOLDER — set once a role-specific photo exists; the card
+  /** ASSET PLACEHOLDER: set once a role-specific photo exists; the card
    *  switches from a flat dark panel to an image card automatically. */
   image?: string;
 }

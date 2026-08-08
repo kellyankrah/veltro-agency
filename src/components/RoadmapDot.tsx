@@ -7,7 +7,7 @@ const DOT_CLASSES: Record<MilestoneStatus, string> = {
   upcoming: 'bg-[#B3B3B3] border-[#B3B3B3]',
 };
 
-/** The timeline marker for one milestone — the "current" one pulses gently to draw the eye. */
+/** The timeline marker for one milestone; the "current" one pulses gently to draw the eye. */
 export function RoadmapDot({ status }: { status: MilestoneStatus }) {
   const prefersReducedMotion = useReducedMotion();
 

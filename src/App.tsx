@@ -21,7 +21,7 @@ const AudienceRegistrationPage = lazy(() =>
 const ClubInterestPage = lazy(() =>
   import('./pages/ClubInterestPage').then((m) => ({ default: m.ClubInterestPage })),
 );
-// Future-facing routes (see src/pages/speakers/README.md) — architecture
+// Future-facing routes (see src/pages/speakers/README.md), architecture
 // only for now, linked from nowhere yet.
 const SpeakersIndexPage = lazy(() =>
   import('./pages/speakers/SpeakersIndexPage').then((m) => ({ default: m.SpeakersIndexPage })),

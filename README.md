@@ -88,8 +88,8 @@ dropped in, no further code changes needed:
 | `about-editorial.jpg` | About | `public/images/` | Live: campus gate |
 | `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | Live: SGA students |
 | `footer-panorama.jpg` | Footer | `public/images/` | Live: Student Success Center at dusk |
-| `welcome-video.mp4` | Welcome Video | `public/` | Still a placeholder, not recorded yet |
-| `kelly-portrait.jpg` | Meet the Organizer | `public/` | Still a placeholder, not supplied yet |
+| `welcome-video.mp4` + `welcome-poster.jpg` | Welcome Video | `public/` | Live: click-to-play welcome message from Kelly Ankrah |
+| `kelly-portrait.jpg` | Meet the Organizer | `public/` | Live: professional headshot |
 | `roadmap.svg` | Roadmap | `public/` | Not needed, CSS-drawn timeline in use instead |
 
 Two earlier hero video submissions were screen recordings (one with
@@ -142,17 +142,26 @@ Four other supplied images are kept in `public/images/` but intentionally
 `src/components/EditorialImage.tsx` is the one place the site's photo
 treatment lives (desaturation, contrast, rounded corners, shadow, and a
 scroll-triggered reveal: fade-up, a slow zoom, or a gentle parallax
-depending on where it's used). About, TEDx Club, and Footer are wired to
-real photos now; Participate cards and the future Speaker profile page are
-still on the placeholder path but wired the same way, passing a real `src`
-is the only change needed and the placeholder disappears on its own.
-Participate specifically is still waiting on genuine photography (a
-speaker on stage, volunteers behind the scenes, the audience from behind);
-none of the currently supplied images fit those roles, so the cards stay
-text-only for now rather than using a stand-in that looks like stock
-photography. The Organizer headshot and Welcome Video are deliberately
-left as their own bespoke placeholders per the brief, since those assets
-aren't ready yet.
+depending on where it's used). About, TEDx Club, Footer, and the Organizer
+portrait are all wired to real photos now; Participate cards and the
+future Speaker profile page are still on the placeholder path but wired
+the same way, passing a real `src` is the only change needed and the
+placeholder disappears on its own. Participate specifically is still
+waiting on genuine photography (a speaker on stage, volunteers behind the
+scenes, the audience from behind); none of the currently supplied images
+fit those roles, so the cards stay text-only for now rather than using a
+stand-in that looks like stock photography.
+
+The Organizer portrait (`kelly-portrait.jpg`) is the supplied professional
+headshot of Kelly Ankrah. The Welcome Video is real footage of Kelly
+speaking to camera in a Grambling State shirt; the source file was
+vertical content pillarboxed inside a wider frame, so it's cropped to its
+true 4:3 content before shipping (no dead black bars) and re-encoded with
+`faststart` so playback can begin without downloading the whole file
+first. Nothing is fetched until a visitor presses play: the section shows
+a poster frame with a play button, and only mounts the `<video>` element
+on click, so it never autoplays and never carries sound the visitor
+didn't ask for.
 
 ## Speakers section
 

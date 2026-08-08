@@ -6,9 +6,9 @@ type Variant = 'invert' | 'outline-invert' | 'brand' | 'outline-dark';
 
 interface ButtonProps {
   children: ReactNode;
-  /** Same-page anchor or external link — rendered as a plain <a>. */
+  /** Same-page anchor or external link, rendered as a plain <a>. */
   href?: string;
-  /** Client-side route — rendered as a React Router <Link> (no full page reload). */
+  /** Client-side route, rendered as a React Router <Link> (no full page reload). */
   to?: string;
   onClick?: () => void;
   variant?: Variant;
@@ -17,15 +17,15 @@ interface ButtonProps {
 }
 
 const VARIANT_CLASSES: Record<Variant, string> = {
-  // White fill, black text — for use on red backgrounds.
+  // White fill, black text: for use on red backgrounds.
   invert:
     'bg-white text-black hover:bg-white/90',
-  // Transparent with white border/text — secondary action on red/black backgrounds.
+  // Transparent with white border/text: secondary action on red/black backgrounds.
   'outline-invert':
     'bg-transparent text-white border border-white/40 hover:border-white hover:bg-white/10',
-  // TED red fill, white text — primary brand action on black/white backgrounds.
+  // TED red fill, white text: primary brand action on black/white backgrounds.
   brand: 'bg-[#EB0028] text-white hover:bg-[#EB0028]/90',
-  // Transparent with black border/text — secondary action on white backgrounds.
+  // Transparent with black border/text: secondary action on white backgrounds.
   'outline-dark':
     'bg-transparent text-black border border-black/25 hover:border-black hover:bg-black/5',
 };
@@ -33,7 +33,7 @@ const VARIANT_CLASSES: Record<Variant, string> = {
 const MotionLink = motion.create(Link);
 
 /**
- * Shared CTA button. Scales gently on hover/tap per the animation spec —
+ * Shared CTA button. Scales gently on hover/tap per the animation spec,
  * no bounce, no color introduced beyond the fixed palette.
  */
 export function Button({

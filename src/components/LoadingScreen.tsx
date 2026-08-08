@@ -8,7 +8,7 @@ function hasShownThisSession(): boolean {
   try {
     return sessionStorage.getItem(SESSION_KEY) === '1';
   } catch {
-    // Storage can throw in locked-down contexts (private browsing, etc.) —
+    // Storage can throw in locked-down contexts (private browsing, etc.);
     // fail open rather than block the page on a splash screen.
     return true;
   }
@@ -32,7 +32,7 @@ export function LoadingScreen() {
       try {
         sessionStorage.setItem(SESSION_KEY, '1');
       } catch {
-        // Nothing to do if storage is unavailable — it'll just show again.
+        // Nothing to do if storage is unavailable; it'll just show again.
       }
     }, 1700);
 

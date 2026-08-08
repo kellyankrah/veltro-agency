@@ -7,7 +7,7 @@ interface RoadmapTooltipProps {
   children: ReactNode;
   /** Tooltip opens above the trigger on desktop, below it on the mobile list. */
   placement?: 'top' | 'bottom';
-  /** Alignment of the trigger's own content — center for the desktop column, start for the mobile row. */
+  /** Alignment of the trigger's own content: center for the desktop column, start for the mobile row. */
   align?: 'center' | 'start';
 }
 

@@ -4,7 +4,7 @@ import { Button } from './Button';
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/** A simple, stylized microphone silhouette — decorative only. */
+/** A simple, stylized microphone silhouette, decorative only. */
 function MicSilhouette() {
   return (
     <svg viewBox="0 0 64 120" className="h-full w-full fill-white" aria-hidden="true">
@@ -26,7 +26,7 @@ function MicSilhouette() {
 /**
  * The stage-is-being-set state for the Speakers section, shown whenever
  * `SPEAKERS` (src/data/speakers.ts) is still empty. Purely decorative
- * spotlight/beam/mic elements — kept faint so they read as atmosphere,
+ * spotlight/beam/mic elements, kept faint so they read as atmosphere,
  * not clutter.
  */
 export function SpeakersComingSoon() {

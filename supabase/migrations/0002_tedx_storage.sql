@@ -1,12 +1,12 @@
--- TEDxGramblingStateUniversity — storage buckets for speaker uploads
+-- TEDxGramblingStateUniversity: storage buckets for speaker uploads
 --
 -- Two buckets, both namespaced with the tedx- prefix so they can't collide
 -- with anything an existing project (e.g. FieldMind) already has:
 --
---   tedx-resumes    private — never publicly readable, insert-only from
+--   tedx-resumes    private, never publicly readable, insert-only from
 --                    the client. A future admin surface would read these
 --                    via the service role key or a signed URL.
---   tedx-headshots  public read — headshots are expected to appear
+--   tedx-headshots  public read; headshots are expected to appear
 --                    publicly later on the Speakers section, so reads are
 --                    open while writes stay insert-only.
 

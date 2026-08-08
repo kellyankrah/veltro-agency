@@ -14,14 +14,14 @@ interface EditorialImageProps {
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-/** Shared filter for every photo on the site — one consistent editorial look. */
+/** Shared filter for every photo on the site: one consistent editorial look. */
 const EDITORIAL_FILTER = 'saturate(0.88) contrast(1.06) brightness(0.97)';
 
 /**
  * The site's single image treatment: consistent desaturation/contrast,
  * rounded corners, a soft shadow, and a scroll-discovered reveal. Pass no
  * `src` to get the placeholder panel used everywhere a real photo hasn't
- * been supplied yet — swapping in a `src` later needs no other changes.
+ * been supplied yet; swapping in a `src` later needs no other changes.
  */
 export function EditorialImage({ src, alt, variant = 'fade-up', className = '', delay = 0 }: EditorialImageProps) {
   const ref = useRef<HTMLDivElement>(null);

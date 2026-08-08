@@ -15,7 +15,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
  * Shared chrome for the four dedicated application pages (/speaker,
  * /volunteer, /audience, /club): a dark header banner (so the transparent
  * nav always reads against something dark) followed by the form on a
- * clean white page — each application gets its own full page, not a modal.
+ * clean white page; each application gets its own full page, not a modal.
  */
 export function ApplicationPageShell({ eyebrow, title, description, children }: ApplicationPageShellProps) {
   return (

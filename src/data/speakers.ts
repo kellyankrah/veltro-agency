@@ -4,7 +4,7 @@ export interface SpeakerResource {
 }
 
 export interface Speaker {
-  /** Also doubles as the /speakers/:slug URL segment — keep it URL-safe (lowercase, hyphenated). */
+  /** Also doubles as the /speakers/:slug URL segment; keep it URL-safe (lowercase, hyphenated). */
   id: string;
   photo: string;
   name: string;
@@ -14,7 +14,7 @@ export interface Speaker {
 
   // --- Fields for the future individual /speakers/:slug profile page. All
   // optional so a speaker can be announced (card grid) before their full
-  // profile is ready — SpeakerProfilePage renders sensible fallbacks for
+  // profile is ready. SpeakerProfilePage renders sensible fallbacks for
   // whichever of these are still missing.
   talkDescription?: string;
   videoEmbedUrl?: string;
@@ -22,10 +22,10 @@ export interface Speaker {
 }
 
 /**
- * Empty until speakers are announced (September 12 — see the Roadmap).
+ * Empty until speakers are announced (September 12, see the Roadmap).
  * The Speakers section renders an elegant "Coming Soon" state whenever
  * this array is empty, and switches to a card grid automatically the
- * moment entries are added here — no component changes required. Each
+ * moment entries are added here, no component changes required. Each
  * entry also automatically gets a profile page at /speakers/:id.
  *
  * Example entry once ready:

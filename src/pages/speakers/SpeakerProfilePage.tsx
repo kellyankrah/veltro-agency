@@ -4,7 +4,7 @@ import { EditorialImage } from '../../components/EditorialImage';
 import { SPEAKERS } from '../../data/speakers';
 
 /**
- * A working dynamic route ahead of need — see src/pages/speakers/README.md.
+ * A working dynamic route ahead of need, see src/pages/speakers/README.md.
  * Renders whatever fields a speaker entry has and gracefully omits the
  * rest, so this doesn't need to change as profiles get filled in over
  * time. Redirects away if the slug doesn't match anyone.

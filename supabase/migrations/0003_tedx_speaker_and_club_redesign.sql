@@ -1,4 +1,4 @@
--- TEDxGramblingStateUniversity — speaker application + Club interest redesign
+-- TEDxGramblingStateUniversity: speaker application + Club interest redesign
 --
 -- The speaker application moved from one generic form to a "Who are you?"
 -- branch (Student / Faculty & Staff / Community) with a shared set of idea
@@ -6,7 +6,7 @@
 -- proper interest survey. This migration reshapes both tables in place.
 -- Additive/idempotent where possible; the few drops are for fields the new
 -- forms no longer collect. Safe to run whether or not 0001/0002 have
--- already been applied against real data (there shouldn't be any yet —
+-- already been applied against real data (there shouldn't be any yet,
 -- this event hasn't launched applications through this schema).
 
 -- ---------------------------------------------------------------------

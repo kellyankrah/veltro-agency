@@ -1,4 +1,4 @@
--- TEDxGramblingStateUniversity — core application tables
+-- TEDxGramblingStateUniversity: core application tables
 --
 -- This migration is scoped entirely to `tedx_`-prefixed objects in the
 -- `public` schema so it can be run safely against a shared Supabase project
@@ -115,7 +115,7 @@ comment on table public.tedx_club_interest is
 -- Row Level Security
 --
 -- Public forms may INSERT their own submission but cannot read, update, or
--- delete any row — including their own. Reads are reserved for a future
+-- delete any row, including their own. Reads are reserved for a future
 -- authenticated admin surface using the service role key (which bypasses
 -- RLS entirely) or a dedicated admin policy added later.
 -- ---------------------------------------------------------------------
