@@ -10,6 +10,7 @@ import { SelectField } from '../components/form/SelectField';
 import { CheckboxField } from '../components/form/CheckboxField';
 import { FileField } from '../components/form/FileField';
 import { FormBanner } from '../components/form/FormBanner';
+import { PrivacyNote } from '../components/form/PrivacyNote';
 import { SuccessScreen } from '../components/form/SuccessScreen';
 import { useSubmission } from '../hooks/useSubmission';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -419,6 +420,7 @@ export function SpeakerApplicationPage() {
                     error={errors.agreedToTerms}
                   />
 
+                  <PrivacyNote />
                   <StepNav onBack={() => setStep('idea')} continueLabel="Submit My Talk" submitting={isSubmitting} />
                 </motion.form>
               )}

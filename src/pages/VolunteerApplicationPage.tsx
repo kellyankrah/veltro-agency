@@ -6,6 +6,7 @@ import { TextAreaField } from '../components/form/TextAreaField';
 import { SelectField } from '../components/form/SelectField';
 import { CheckboxGroupField } from '../components/form/CheckboxGroupField';
 import { SubmitButton } from '../components/form/SubmitButton';
+import { PrivacyNote } from '../components/form/PrivacyNote';
 import { FormBanner } from '../components/form/FormBanner';
 import { SuccessScreen } from '../components/form/SuccessScreen';
 import { useSubmission } from '../hooks/useSubmission';
@@ -154,6 +155,7 @@ export function VolunteerApplicationPage() {
               error={errors.whyVolunteer}
             />
 
+            <PrivacyNote />
             <SubmitButton submitting={isSubmitting}>Join the Team</SubmitButton>
           </motion.form>
         )}

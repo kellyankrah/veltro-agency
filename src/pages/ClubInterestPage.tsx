@@ -6,6 +6,7 @@ import { TextAreaField } from '../components/form/TextAreaField';
 import { SelectField } from '../components/form/SelectField';
 import { CheckboxField } from '../components/form/CheckboxField';
 import { SubmitButton } from '../components/form/SubmitButton';
+import { PrivacyNote } from '../components/form/PrivacyNote';
 import { FormBanner } from '../components/form/FormBanner';
 import { SuccessScreen } from '../components/form/SuccessScreen';
 import { useSubmission } from '../hooks/useSubmission';
@@ -181,6 +182,7 @@ export function ClubInterestPage() {
               onChange={(v) => set('additionalComments', v)}
             />
 
+            <PrivacyNote />
             <SubmitButton submitting={isSubmitting}>Count Me In</SubmitButton>
           </motion.form>
         )}

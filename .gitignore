@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Env files: *.local above already covers .env.local, but a bare `.env`
+# (a common convention this project doesn't use, but shouldn't trust
+# someone not to reach for) wasn't excluded. Keep .env.example tracked.
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
