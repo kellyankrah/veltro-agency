@@ -74,7 +74,7 @@ export function SpeakersComingSoon() {
             className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[#B3B3B3] md:text-base"
           >
             Applications are open now. Our inaugural speakers will be announced September
-            12 — until then, the mic is waiting for the right idea. Maybe it's yours.
+            12. Until then, the mic is waiting for the right idea. Maybe it's yours.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 12 }}

@@ -12,17 +12,21 @@ export function TEDxClub() {
       <div className="mx-auto max-w-[1280px]">
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
           <Reveal>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/50">
+              Exploring interest
+            </p>
             <h2
               id="tedx-club-heading"
-              className="text-[clamp(1.75rem,4vw,3rem)] font-extrabold leading-[1.1] tracking-tight text-white"
+              className="mt-4 text-[clamp(1.75rem,4vw,3rem)] font-extrabold leading-[1.1] tracking-tight text-white"
             >
-              Great conversations shouldn't happen only once a year.
+              What if the ideas didn't stop at the event?
             </h2>
             <p className="mt-6 text-[16px] leading-[1.7] text-[#B3B3B3] md:text-[18px]">
-              Beyond our annual event, we're exploring a TEDxGramblingStateUniversity
-              Club—a home for the rest of the year, where students keep the conversation
-              going: exchanging ideas, watching TED Talks, practicing public speaking, and
-              growing as leaders together.
+              We're exploring whether there's enough interest to build a
+              TEDxGramblingStateUniversity Club: a potential student-led community for
+              public speaking, storytelling, idea development, discussion, debate,
+              communication, and speaker preparation. It doesn't exist yet. Telling us
+              you're interested is how it might.
             </p>
             <div className="mt-8">
               <Button to="/club" variant="brand">

@@ -12,7 +12,7 @@ export const FAQS: FaqItem[] = [
   {
     question: 'Who can apply?',
     answer:
-      'Anyone with an idea worth spreading—students, faculty, staff, alumni, and members of the surrounding community are all welcome to apply as a speaker, volunteer, or attendee.',
+      'Anyone with an idea worth spreading. Students, faculty, staff, alumni, and members of the surrounding community are all welcome to apply as a speaker, volunteer, or attendee.',
   },
   {
     question: 'Do I need speaking experience?',

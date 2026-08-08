@@ -91,7 +91,7 @@ export function VolunteerApplicationPage() {
 
   return (
     <ApplicationPageShell
-      eyebrow="Participate — Volunteer"
+      eyebrow="Participate: Volunteer"
       title="Help create an unforgettable TEDx experience."
       description="Our volunteers are the reason the day runs beautifully. Tell us where you'd like to help."
     >
@@ -100,7 +100,7 @@ export function VolunteerApplicationPage() {
           <SuccessScreen
             key="success"
             title="You're on the team."
-            message="Thank you for becoming part of TEDxGramblingStateUniversity. Days like this run on people like you — our volunteer team will reach out by email with next steps as the event approaches."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. Days like this run on people like you. Our volunteer team will reach out by email with next steps as the event approaches."
           />
         ) : (
           <motion.form
@@ -143,7 +143,7 @@ export function VolunteerApplicationPage() {
               onChange={(v) => set('availability', v)}
               error={errors.availability}
             />
-            <TextAreaField id="experience" label="Experience" rows={3} hint="Any relevant experience — optional." value={form.experience} onChange={(v) => set('experience', v)} />
+            <TextAreaField id="experience" label="Experience" rows={3} hint="Any relevant experience. Optional." value={form.experience} onChange={(v) => set('experience', v)} />
             <TextAreaField
               id="whyVolunteer"
               label="Why do you want to volunteer?"

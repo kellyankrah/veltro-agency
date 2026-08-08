@@ -62,7 +62,7 @@ export function HeroBackground() {
         <motion.video
           className="absolute inset-0 h-full w-full object-cover"
           style={{
-            opacity: 0.09,
+            opacity: 0.12,
             filter: 'blur(2.5px) grayscale(35%) saturate(70%)',
           }}
           src={VIDEO_SRC}
@@ -83,7 +83,7 @@ export function HeroBackground() {
         <img
           className="absolute inset-0 h-full w-full object-cover"
           style={{
-            opacity: 0.09,
+            opacity: 0.12,
             filter: 'blur(2.5px) grayscale(35%) saturate(70%)',
           }}
           src={POSTER_SRC}

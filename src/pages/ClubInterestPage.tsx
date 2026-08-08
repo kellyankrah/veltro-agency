@@ -4,28 +4,47 @@ import { ApplicationPageShell } from '../components/ApplicationPageShell';
 import { TextField } from '../components/form/TextField';
 import { TextAreaField } from '../components/form/TextAreaField';
 import { SelectField } from '../components/form/SelectField';
+import { CheckboxField } from '../components/form/CheckboxField';
 import { SubmitButton } from '../components/form/SubmitButton';
 import { FormBanner } from '../components/form/FormBanner';
 import { SuccessScreen } from '../components/form/SuccessScreen';
 import { useSubmission } from '../hooks/useSubmission';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { firstError, isEmail, required } from '../lib/validation';
-import { CLASSIFICATION_OPTIONS, type ClubInterestInsert } from '../types/tedx';
+import type { ClubInterestInsert, ClubInterestRole } from '../types/tedx';
+
+const ROLE_OPTIONS = ['Student', 'Faculty', 'Staff'] as const;
+
+const FOCUS_AREAS = [
+  'Public speaking',
+  'Storytelling',
+  'Idea development',
+  'Discussion',
+  'Debate',
+  'Communication',
+  'Speaker preparation',
+];
 
 interface FormState {
   name: string;
   email: string;
-  classification: string;
-  major: string;
-  clubIdeas: string;
+  role: ClubInterestRole | '';
+  whyInterested: string;
+  clubGoals: string;
+  interestedInOrganizing: boolean;
+  notifyIfApproved: boolean;
+  additionalComments: string;
 }
 
 const INITIAL_STATE: FormState = {
   name: '',
   email: '',
-  classification: '',
-  major: '',
-  clubIdeas: '',
+  role: '',
+  whyInterested: '',
+  clubGoals: '',
+  interestedInOrganizing: false,
+  notifyIfApproved: true,
+  additionalComments: '',
 };
 
 type Errors = Partial<Record<keyof FormState, string>>;
@@ -42,7 +61,9 @@ export function ClubInterestPage() {
     const next: Errors = {
       name: firstError(required(form.name)),
       email: firstError(required(form.email), isEmail(form.email)),
-      classification: firstError(required(form.classification)),
+      role: firstError(required(form.role)),
+      whyInterested: firstError(required(form.whyInterested)),
+      clubGoals: firstError(required(form.clubGoals)),
     };
     setErrors(next);
     return Object.values(next).every((v) => !v);
@@ -50,7 +71,7 @@ export function ClubInterestPage() {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    if (!validate()) return;
+    if (!validate() || !form.role) return;
 
     run(async () => {
       if (!isSupabaseConfigured || !supabase) {
@@ -62,9 +83,12 @@ export function ClubInterestPage() {
       const payload: ClubInterestInsert = {
         name: form.name.trim(),
         email: form.email.trim(),
-        classification: form.classification,
-        major: form.major.trim() || null,
-        club_ideas: form.clubIdeas.trim() || null,
+        role: form.role.toLowerCase() as ClubInterestRole,
+        why_interested: form.whyInterested.trim(),
+        club_goals: form.clubGoals.trim(),
+        interested_in_organizing: form.interestedInOrganizing,
+        notify_if_approved: form.notifyIfApproved,
+        additional_comments: form.additionalComments.trim() || null,
       };
 
       const { error: insertError } = await supabase.from('tedx_club_interest').insert(payload);
@@ -74,16 +98,16 @@ export function ClubInterestPage() {
 
   return (
     <ApplicationPageShell
-      eyebrow="TEDx Club"
-      title="Great conversations shouldn't happen only once a year."
-      description="Register your interest in the TEDxGramblingStateUniversity Club — a year-round community for ideas, TED Talks, and public speaking practice."
+      eyebrow="TEDx Club (exploring interest)"
+      title="What if the ideas didn't stop at the event?"
+      description="We're exploring whether there's enough interest to build a TEDx Club at Grambling, a potential student-led community for public speaking, storytelling, idea development, discussion, debate, communication, and speaker preparation. It doesn't exist yet. Telling us you're interested is how it might."
     >
       <AnimatePresence mode="wait">
         {isSuccess ? (
           <SuccessScreen
             key="success"
             title="You're on the list."
-            message="Thank you for becoming part of TEDxGramblingStateUniversity. We'll be in touch as the Club comes to life — glad to have you helping shape it from the start."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. If there's enough interest to build the Club, you'll be among the first to know, and you told us you'd like to help shape it from the start."
           />
         ) : (
           <motion.form
@@ -98,21 +122,63 @@ export function ClubInterestPage() {
           >
             {status === 'error' && error && <FormBanner message={error} />}
 
+            <ul className="flex flex-wrap gap-2" aria-label="Areas the Club would focus on">
+              {FOCUS_AREAS.map((area) => (
+                <li
+                  key={area}
+                  className="rounded-full border border-black/10 px-3 py-1 text-[12px] font-medium text-black/60"
+                >
+                  {area}
+                </li>
+              ))}
+            </ul>
+
             <div className="grid gap-5 sm:grid-cols-2">
               <TextField id="name" label="Name" required value={form.name} onChange={(v) => set('name', v)} error={errors.name} autoComplete="name" />
               <TextField id="email" label="Email" type="email" required value={form.email} onChange={(v) => set('email', v)} error={errors.email} autoComplete="email" />
             </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              <SelectField id="classification" label="Classification" required options={CLASSIFICATION_OPTIONS} value={form.classification} onChange={(v) => set('classification', v)} error={errors.classification} />
-              <TextField id="major" label="Major" value={form.major} onChange={(v) => set('major', v)} />
-            </div>
+
+            <SelectField id="role" label="Student / Faculty / Staff" required options={ROLE_OPTIONS} value={form.role} onChange={(v) => set('role', v as ClubInterestRole)} error={errors.role} />
+
             <TextAreaField
-              id="clubIdeas"
-              label="What would you like to see in a TEDx Club?"
-              rows={4}
-              hint="Optional, but we'd love to hear it."
-              value={form.clubIdeas}
-              onChange={(v) => set('clubIdeas', v)}
+              id="whyInterested"
+              label="Why are you interested?"
+              required
+              rows={3}
+              value={form.whyInterested}
+              onChange={(v) => set('whyInterested', v)}
+              error={errors.whyInterested}
+            />
+            <TextAreaField
+              id="clubGoals"
+              label="What would you like to get from a TEDx Club?"
+              required
+              rows={3}
+              value={form.clubGoals}
+              onChange={(v) => set('clubGoals', v)}
+              error={errors.clubGoals}
+            />
+
+            <CheckboxField
+              id="interestedInOrganizing"
+              label="I'd be interested in helping organize future TEDx events."
+              checked={form.interestedInOrganizing}
+              onChange={(v) => set('interestedInOrganizing', v)}
+            />
+            <CheckboxField
+              id="notifyIfApproved"
+              label="Notify me if the Club moves forward."
+              checked={form.notifyIfApproved}
+              onChange={(v) => set('notifyIfApproved', v)}
+            />
+
+            <TextAreaField
+              id="additionalComments"
+              label="Additional Comments"
+              rows={3}
+              hint="Optional"
+              value={form.additionalComments}
+              onChange={(v) => set('additionalComments', v)}
             />
 
             <SubmitButton submitting={isSubmitting}>Count Me In</SubmitButton>

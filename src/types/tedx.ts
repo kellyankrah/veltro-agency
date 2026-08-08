@@ -4,36 +4,53 @@
  * schema changes, update both together.
  *
  * Each `*Status` union exists so a future admin dashboard has somewhere to
- * move applications through a review pipeline without a migration — see
+ * move applications through a review pipeline without a migration, see
  * supabase/README.md "Admin dashboard".
  */
 
 export type SpeakerApplicationStatus = 'pending' | 'under_review' | 'approved' | 'rejected';
 
+/** Which of the three application branches an applicant took. */
+export type ApplicantCategory = 'student' | 'faculty_staff' | 'community';
+
 export interface SpeakerApplicationRow {
   id: string;
   created_at: string;
   status: SpeakerApplicationStatus;
+  applicant_category: ApplicantCategory;
 
   first_name: string;
   last_name: string;
   email: string;
   phone: string;
+
+  // Student only
+  major: string | null;
+  classification: string | null;
+
+  // Faculty & Staff only
+  department: string | null;
+  role_title: string | null;
+
+  // Community only
+  is_alumni: boolean | null;
+  graduation_year: string | null;
+  alumni_major: string | null;
+  occupation: string | null;
   organization: string | null;
-  current_position: string | null;
-  linkedin_url: string | null;
-  instagram_url: string | null;
-  website_url: string | null;
 
-  talk_title: string;
-  one_sentence_summary: string;
+  // The idea, asked the same way regardless of category
   idea_description: string;
-  why_right_person: string;
-  has_spoken_publicly: boolean;
-  video_link: string | null;
+  idea_why_it_matters: string;
+  idea_origin: string;
+  idea_impact: string;
 
+  // Supporting material, all optional, all categories
   resume_path: string | null;
-  headshot_path: string | null;
+  video_link: string | null;
+  website_url: string | null;
+  linkedin_url: string | null;
+  additional_links: string | null;
 
   agreed_to_terms: boolean;
 }
@@ -77,20 +94,26 @@ export interface AudienceRegistrationRow {
 
 export type AudienceRegistrationInsert = Omit<AudienceRegistrationRow, 'id' | 'created_at' | 'status'>;
 
+/** Role options for the TEDx Club interest form - simpler than the full classification list on purpose. */
+export type ClubInterestRole = 'student' | 'faculty' | 'staff';
+
 export interface ClubInterestRow {
   id: string;
   created_at: string;
 
   name: string;
   email: string;
-  classification: string;
-  major: string | null;
-  club_ideas: string | null;
+  role: ClubInterestRole;
+  why_interested: string;
+  club_goals: string;
+  interested_in_organizing: boolean;
+  notify_if_approved: boolean;
+  additional_comments: string | null;
 }
 
 export type ClubInterestInsert = Omit<ClubInterestRow, 'id' | 'created_at'>;
 
-/** Areas a volunteer can select interest in — mirrors the checkbox group in the form. */
+/** Areas a volunteer can select interest in - mirrors the checkbox group in the form. */
 export const VOLUNTEER_INTEREST_AREAS = [
   'Registration',
   'Speaker Support',
@@ -102,7 +125,7 @@ export const VOLUNTEER_INTEREST_AREAS = [
   'Operations',
 ] as const;
 
-/** Shared classification options across the volunteer, audience, and club forms. */
+/** Classification options for the volunteer and audience forms. */
 export const CLASSIFICATION_OPTIONS = [
   'Freshman',
   'Sophomore',
@@ -113,4 +136,13 @@ export const CLASSIFICATION_OPTIONS = [
   'Staff',
   'Alumni',
   'Community Member',
+] as const;
+
+/** Classification options for students specifically (the speaker form's student branch). */
+export const STUDENT_CLASSIFICATION_OPTIONS = [
+  'Freshman',
+  'Sophomore',
+  'Junior',
+  'Senior',
+  'Graduate Student',
 ] as const;

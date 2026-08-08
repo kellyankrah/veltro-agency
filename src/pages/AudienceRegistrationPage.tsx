@@ -78,16 +78,16 @@ export function AudienceRegistrationPage() {
 
   return (
     <ApplicationPageShell
-      eyebrow="Participate — Audience"
+      eyebrow="Participate: Audience"
       title="Experience powerful ideas firsthand."
-      description="Reserve your seat for the inaugural TEDxGramblingStateUniversity — Friday, October 23, 2026."
+      description="Reserve your seat for the inaugural TEDxGramblingStateUniversity, Friday, October 23, 2026."
     >
       <AnimatePresence mode="wait">
         {isSuccess ? (
           <SuccessScreen
             key="success"
             title="Your seat is saved."
-            message="Thank you for becoming part of TEDxGramblingStateUniversity. We've reserved your place for October 23 — keep an eye on your inbox for details as the day gets closer."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. We've reserved your place for October 23. Keep an eye on your inbox for details as the day gets closer."
           />
         ) : (
           <motion.form
@@ -123,7 +123,7 @@ export function AudienceRegistrationPage() {
               id="accessibilityNeeds"
               label="Special Accessibility Needs"
               rows={3}
-              hint="Let us know how we can make the day work for you — optional."
+              hint="Let us know how we can make the day work for you. Optional."
               value={form.accessibilityNeeds}
               onChange={(v) => set('accessibilityNeeds', v)}
             />
