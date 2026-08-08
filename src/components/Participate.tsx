@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Reveal } from './Reveal';
+import { CinematicVideoLayer } from './CinematicVideoLayer';
 
 interface Card {
   eyebrow: string;
@@ -41,9 +42,11 @@ export function Participate() {
     <section
       id="participate"
       aria-labelledby="participate-heading"
-      className="scroll-mt-24 bg-[#EB0028] px-6 py-28 md:px-10 md:py-36"
+      className="relative scroll-mt-24 overflow-hidden bg-[#EB0028] px-6 py-28 md:px-10 md:py-36"
     >
-      <div className="mx-auto max-w-[1280px]">
+      <CinematicVideoLayer />
+
+      <div className="relative mx-auto max-w-[1280px]">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 id="participate-heading" className="sr-only">
             Participate

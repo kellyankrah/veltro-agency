@@ -84,7 +84,7 @@ dropped in, no further code changes needed:
 
 | Asset | Section | Location | Status |
 | --- | --- | --- | --- |
-| `hero-background.mp4` + `hero-poster.jpg` | Hero | `public/hero/` | Live: real campus b-roll, re-encoded (audio stripped, faststart) |
+| `hero-background.mp4` + `hero-poster.jpg` | Hero, Participate | `public/hero/` | Live: real campus b-roll, re-encoded (audio stripped, faststart) |
 | `about-editorial.jpg` | About | `public/images/` | Live: campus gate |
 | `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | Live: SGA students |
 | `footer-panorama.jpg` | Footer | `public/images/` | Live: Student Success Center at dusk |
@@ -104,6 +104,17 @@ headless Chromium bundled with Playwright here has no H.264 decoder at all
 `canPlayType`), so it correctly falls back to the gradient in that one
 browser. Real Chrome/Safari/Firefox all ship licensed H.264 decoders and
 will play it normally, worth a check in an actual browser after deploying.
+
+The same video (same 12% opacity, blur, desaturation, red wash, vignette,
+grain, and slow Ken Burns scale) also plays behind the Participate section
+(Speaker / Volunteer / Audience), so the two most cinematic moments on the
+page share one consistent treatment instead of drifting apart over time.
+Both sections render it through the shared `CinematicVideoLayer` component
+(`src/components/CinematicVideoLayer.tsx`); `HeroBackground.tsx` is now a
+thin wrapper around it. If the video or poster is ever unavailable,
+Participate just falls back to its plain TED-red background (it never
+depended on the video visually), and Hero falls back to the original
+animated gradient blobs.
 
 Four other supplied images are kept in `public/images/` but intentionally
 **not** used anywhere:
