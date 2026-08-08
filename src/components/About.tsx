@@ -6,19 +6,9 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative scroll-mt-24 overflow-hidden bg-black px-6 py-28 md:px-10 md:py-36"
+      className="scroll-mt-24 bg-black px-6 py-28 md:px-10 md:py-36"
     >
-      {/* The real Grambling tiger statue, used sparingly as a watermark-like
-          motif tying the event to campus - not a decorative photo. */}
-      <img
-        src="/images/Tiger-scaled.jpg"
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        className="pointer-events-none absolute -right-24 bottom-0 hidden h-[85%] w-auto max-w-none object-cover opacity-[0.07] grayscale md:block"
-      />
-
-      <div className="relative mx-auto max-w-[1280px]">
+      <div className="mx-auto max-w-[1280px]">
         <div className="grid items-center gap-12 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16">
           <EditorialImage
             src="/images/about-editorial.jpg"

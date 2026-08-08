@@ -88,7 +88,6 @@ dropped in, no further code changes needed:
 | `about-editorial.jpg` | About | `public/images/` | Live: campus gate |
 | `tedx-club-collaboration.jpg` | TEDx Club | `public/images/` | Live: SGA students |
 | `footer-panorama.jpg` | Footer | `public/images/` | Live: Student Success Center at dusk |
-| `Tiger-scaled.jpg` | About (edge overlay) | `public/images/` | Live: the real campus tiger statue, used once as a faint, desaturated watermark-style motif, desktop only |
 | `welcome-video.mp4` | Welcome Video | `public/` | Still a placeholder, not recorded yet |
 | `kelly-portrait.jpg` | Meet the Organizer | `public/` | Still a placeholder, not supplied yet |
 | `roadmap.svg` | Roadmap | `public/` | Not needed, CSS-drawn timeline in use instead |
@@ -106,9 +105,12 @@ headless Chromium bundled with Playwright here has no H.264 decoder at all
 browser. Real Chrome/Safari/Firefox all ship licensed H.264 decoders and
 will play it normally, worth a check in an actual browser after deploying.
 
-Three other supplied images are kept in `public/images/` but intentionally
+Four other supplied images are kept in `public/images/` but intentionally
 **not** used anywhere:
 
+- `Tiger-scaled.jpg`: the real campus tiger statue. It was briefly used as
+  a faint edge overlay in About, then removed at the client's request. The
+  About section now has a plain background, nothing behind the text.
 - `grambling-tiger-logo.jpg`: a mascot illustration, not documentary
   photography, so the site's photo treatment (desaturation etc.) doesn't
   suit it.
