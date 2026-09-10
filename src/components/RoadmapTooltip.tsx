@@ -27,7 +27,7 @@ export function RoadmapTooltip({ milestone, children, placement = 'top', align =
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
       aria-describedby={tooltipId}
-      className={`relative flex cursor-default flex-col rounded-lg text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB0028]/40 ${
+      className={`relative flex w-full min-w-0 cursor-default flex-col rounded-lg text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EB0028]/40 ${
         align === 'center' ? 'items-center' : 'items-start'
       }`}
     >
