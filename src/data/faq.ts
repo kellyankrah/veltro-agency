@@ -32,6 +32,6 @@ export const FAQS: FaqItem[] = [
   {
     question: 'How will speakers be selected?',
     answer:
-      'Our organizing team reviews every application for clarity, originality, and impact. Selected speakers are announced on September 12 and paired with a coach ahead of the event.',
+      'Our organizing team reviews every application for clarity, originality, and impact. Selected speakers are announced on September 20 and paired with a coach ahead of the event.',
   },
 ];

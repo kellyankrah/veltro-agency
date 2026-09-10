@@ -224,7 +224,7 @@ export function SpeakerApplicationPage() {
           <SuccessScreen
             key="success"
             title="Your idea is officially in the running."
-            message="Thank you for becoming part of TEDxGramblingStateUniversity. We read every submission with care and will follow up by email. Speaker announcements go out September 12. However this goes, we're glad you raised your hand."
+            message="Thank you for becoming part of TEDxGramblingStateUniversity. We read every submission with care and will follow up by email. Speaker announcements go out September 20. However this goes, we're glad you raised your hand."
           />
         ) : (
           <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
