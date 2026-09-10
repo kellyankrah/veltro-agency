@@ -22,7 +22,7 @@ export interface Speaker {
 }
 
 /**
- * Empty until speakers are announced (September 12, see the Roadmap).
+ * Empty until speakers are announced (September 20, see the Roadmap).
  * The Speakers section renders an elegant "Coming Soon" state whenever
  * this array is empty, and switches to a card grid automatically the
  * moment entries are added here, no component changes required. Each
