@@ -16,10 +16,33 @@ const LINE_CLASSES: Record<MilestoneStatus, string> = {
   upcoming: 'bg-[#B3B3B3]/40',
 };
 
+/**
+ * The event-day milestone's title is one long, space-less compound word.
+ * Same word-boundary break already used for it in Hero.tsx and
+ * WelcomeVideo.tsx, so it wraps cleanly here too instead of breaking
+ * mid-letter (the `break-words` on the title span is just the fallback
+ * for anything else that ever runs long).
+ */
+function MilestoneTitle({ title }: { title: string }) {
+  if (title === 'TEDxGramblingStateUniversity') {
+    return (
+      <>
+        TEDx<wbr />Grambling<wbr />State<wbr />University
+      </>
+    );
+  }
+  return <>{title}</>;
+}
+
 export function Roadmap() {
   const statuses = getMilestoneStatuses(MILESTONES);
   const currentIndex = statuses.indexOf('current');
   const progressIndex = currentIndex === -1 ? statuses.length - 1 : currentIndex;
+  // Each milestone sits centered in an equal-width column, so its dot's
+  // center is inset from the row's edges by half a column, not flush
+  // against them. The connecting line has to start and end at that same
+  // inset, or its segment boundaries land between dots instead of on them.
+  const halfColumnPercent = 50 / MILESTONES.length;
 
   return (
     <section
@@ -45,8 +68,11 @@ export function Roadmap() {
 
         {/* ASSET PLACEHOLDER: roadmap.svg could replace this CSS-drawn timeline. */}
         <div className="mt-28 hidden md:block">
-          <div className="relative flex items-start justify-between">
-            <div className="absolute left-0 right-0 top-[7px] flex h-[2px]">
+          <div className="relative flex items-start">
+            <div
+              className="absolute top-[7px] flex h-[2px]"
+              style={{ left: `${halfColumnPercent}%`, right: `${halfColumnPercent}%` }}
+            >
               {MILESTONES.slice(0, -1).map((milestone, i) => (
                 <div
                   key={milestone.id}
@@ -66,15 +92,15 @@ export function Roadmap() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-10%' }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative z-10 flex w-full flex-col items-center px-2 text-center"
+                  className="relative z-10 flex min-w-0 flex-1 flex-col items-center px-2 text-center"
                 >
                   <RoadmapTooltip milestone={milestone} placement="top">
                     <RoadmapDot status={status} />
                     <span className="mt-6 text-[13px] font-medium uppercase tracking-wide text-black/40">
                       {milestone.dateLabel}
                     </span>
-                    <span className={`mt-2 text-[15px] font-bold leading-snug ${TITLE_CLASSES[status]}`}>
-                      {milestone.title}
+                    <span className={`mt-2 block w-full break-words text-[15px] font-bold leading-snug ${TITLE_CLASSES[status]}`}>
+                      <MilestoneTitle title={milestone.title} />
                     </span>
                   </RoadmapTooltip>
                   {status === 'current' && (
@@ -118,8 +144,8 @@ export function Roadmap() {
                     <span className="block text-[13px] font-medium uppercase tracking-wide text-black/40">
                       {milestone.dateLabel}
                     </span>
-                    <span className={`mt-1 block text-base font-bold leading-snug ${TITLE_CLASSES[status]}`}>
-                      {milestone.title}
+                    <span className={`mt-1 block break-words text-base font-bold leading-snug ${TITLE_CLASSES[status]}`}>
+                      <MilestoneTitle title={milestone.title} />
                     </span>
                     {status === 'current' && (
                       <span className="mt-2 inline-block rounded-full bg-[#EB0028]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-[#EB0028]">
