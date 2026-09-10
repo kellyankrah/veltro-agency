@@ -11,7 +11,7 @@ const TITLE_CLASSES: Record<MilestoneStatus, string> = {
 };
 
 const LINE_CLASSES: Record<MilestoneStatus, string> = {
-  completed: 'bg-[#EB0028]',
+  completed: 'bg-black/25',
   current: 'bg-[#EB0028]',
   upcoming: 'bg-[#B3B3B3]/40',
 };

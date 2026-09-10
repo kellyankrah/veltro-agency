@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import type { MilestoneStatus } from '../data/roadmap';
 
 const DOT_CLASSES: Record<MilestoneStatus, string> = {
-  completed: 'bg-[#EB0028] border-[#EB0028]',
+  completed: 'bg-white border-black/30',
   current: 'bg-[#EB0028] border-[#EB0028]',
   upcoming: 'bg-[#B3B3B3] border-[#B3B3B3]',
 };
